@@ -1,0 +1,8 @@
+test_event_count_alone_is_insufficient (test_evaluate.Gates.test_event_count_alone_is_insufficient) ... ok
+test_insufficient_data_never_trains (test_evaluate.Gates.test_insufficient_data_never_trains) ... ok
+test_offline_pipeline_uses_disjoint_time_windows (test_evaluate.Gates.test_offline_pipeline_uses_disjoint_time_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.021s
+
+OK

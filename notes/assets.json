@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-15",
+  "valuationConvention": "名义稳定币 1 美元，只用于研究计价，不保证可按面值兑付",
+  "assets": [
+    {"id":"bsc:USDC-peg","issuer":"Binance-Peg 封装表示；底层 USDC 发行方 Circle","wrapping":"BSC 合约 0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d，18 位；不是 Circle 在 BSC 原生发行","redemption":"未验证可供本用户使用的解封装、交易所充值提现或跨链兑付路径","crossChainEquivalent":false,"source":"https://www.circle.com/usdc"},
+    {"id":"bsc:USDT-peg","issuer":"BSC Binance-Peg 表示；底层 USD₮ 发行方 Tether","wrapping":"BSC 合约 0x55d398326f99059ff775485246999027b3197955，18 位；与 Solana mint 分开登记","redemption":"未验证资产映射、储备对应、用户准入、提现可用性及总成本","crossChainEquivalent":false,"source":"https://tether.to/en/supported-protocols/"},
+    {"id":"solana:USDC","issuer":"Circle","wrapping":"原生 Solana USDC；EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v，6 位","redemption":"Circle Mint 或其他合规出入金渠道受账户准入约束；未验证与 BSC 表示之间的可执行路径","crossChainEquivalent":false,"source":"https://www.circle.com/usdc"},
+    {"id":"solana:USDT","issuer":"Tether","wrapping":"Solana USD₮；Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB，6 位","redemption":"未验证本用户可使用的发行方兑付或交易所转移路径及成本","crossChainEquivalent":false,"source":"https://tether.to/en/supported-protocols/"},
+    {"id":"bsc:WBNB","issuer":"BNB 链内封装合约","wrapping":"0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c，18 位","redemption":"仅链内控制；本版不执行 unwrap","crossChainEquivalent":false},
+    {"id":"solana:SOL","issuer":"Solana 原生币的 SPL 封装","wrapping":"So11111111111111111111111111111111111111112，9 位","redemption":"仅链内控制；本版不执行 close account/unwrap","crossChainEquivalent":false}
+  ],
+  "routes": [{"from":"bsc","to":"solana","enabled":false,"reason":"发行/封装关系与可执行兑付路径、准入、限额、时间和成本尚未完成验证；不以币名或价格近似代替证明"}]
+}

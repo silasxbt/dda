@@ -1,0 +1,138 @@
+{
+  "session": "27b468f1-075c-4fdf-be85-d56a90215e6b",
+  "cycles": 105,
+  "byPool": [
+    {
+      "pool": "0x92b7807bF19b7DDdf89b706143896d05228f3121",
+      "chain": "bsc",
+      "market": "USDC/USDT",
+      "quotes": 315,
+      "valid": 312,
+      "medianQuoteMs": 3200,
+      "coverageWindows": 105,
+      "completeWindows": 36,
+      "tradeRecords": 126,
+      "reasons": {
+        "成交读取预算耗尽": 43,
+        "成交窗口截断或交易身份缺失": 26
+      }
+    },
+    {
+      "pool": "0x4f31Fa980a675570939B737Ebdde0471a4Be40Eb",
+      "chain": "bsc",
+      "market": "USDC/USDT",
+      "quotes": 315,
+      "valid": 312,
+      "medianQuoteMs": 3537,
+      "coverageWindows": 105,
+      "completeWindows": 31,
+      "tradeRecords": 43,
+      "reasons": {
+        "成交读取预算耗尽": 65,
+        "成交窗口截断或交易身份缺失": 9
+      }
+    },
+    {
+      "pool": "0x172fcD41E0913e95784454622d1c3724f546f849",
+      "chain": "bsc",
+      "market": "WBNB/USDT",
+      "quotes": 315,
+      "valid": 312,
+      "medianQuoteMs": 3469,
+      "coverageWindows": 105,
+      "completeWindows": 0,
+      "tradeRecords": 129,
+      "reasons": {
+        "成交窗口截断或交易身份缺失": 40,
+        "成交读取预算耗尽": 65
+      }
+    },
+    {
+      "pool": "0x36696169C63e42cd08ce11f5deeBbCeBae652050",
+      "chain": "bsc",
+      "market": "WBNB/USDT",
+      "quotes": 312,
+      "valid": 309,
+      "medianQuoteMs": 3786,
+      "coverageWindows": 105,
+      "completeWindows": 3,
+      "tradeRecords": 64,
+      "reasons": {
+        "成交读取预算耗尽": 92,
+        "成交窗口截断或交易身份缺失": 10
+      }
+    },
+    {
+      "pool": "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU",
+      "chain": "solana",
+      "market": "USDC/USDT",
+      "quotes": 264,
+      "valid": 0,
+      "medianQuoteMs": 10735,
+      "coverageWindows": 105,
+      "completeWindows": 4,
+      "tradeRecords": 5,
+      "reasons": {
+        "成交读取预算耗尽": 89,
+        "成交窗口截断、首次同步或解析缺失": 8,
+        "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1": 4
+      }
+    },
+    {
+      "pool": "3NeUgARDmFgnKtkJLqUcEUNCfknFCcGsFfMJCtx6bAgx",
+      "chain": "solana",
+      "market": "USDC/USDT",
+      "quotes": 291,
+      "valid": 0,
+      "medianQuoteMs": 10408,
+      "coverageWindows": 105,
+      "completeWindows": 27,
+      "tradeRecords": 0,
+      "reasons": {
+        "成交读取预算耗尽": 77,
+        "成交窗口截断、首次同步或解析缺失": 1
+      }
+    },
+    {
+      "pool": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+      "chain": "solana",
+      "market": "SOL/USDC",
+      "quotes": 291,
+      "valid": 0,
+      "medianQuoteMs": 11141,
+      "coverageWindows": 105,
+      "completeWindows": 2,
+      "tradeRecords": 15,
+      "reasons": {
+        "成交读取预算耗尽": 64,
+        "成交窗口截断、首次同步或解析缺失": 25,
+        "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1": 14
+      }
+    },
+    {
+      "pool": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq",
+      "chain": "solana",
+      "market": "SOL/USDC",
+      "quotes": 291,
+      "valid": 0,
+      "medianQuoteMs": 11368,
+      "coverageWindows": 105,
+      "completeWindows": 1,
+      "tradeRecords": 35,
+      "reasons": {
+        "成交读取预算耗尽": 52,
+        "成交窗口截断、首次同步或解析缺失": 20,
+        "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1": 32
+      }
+    }
+  ],
+  "rawExampleKeys": [
+    "start",
+    "end",
+    "source",
+    "method",
+    "request",
+    "status",
+    "response"
+  ]
+}

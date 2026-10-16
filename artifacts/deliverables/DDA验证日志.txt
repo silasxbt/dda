@@ -1,0 +1,59 @@
+
+tests-final.log
+
+> dda-research@0.1.0 test /Users/silas/Documents/Codex/2026-10-15/wo-y/dda
+> tsx --test tests/*.test.ts
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+✔ 原始整数保留 18 位精度与保守取整 (0.843ms)
+✔ 双腿同数量；DEX 费用已嵌入，不按费率二次扣款 (0.652583ms)
+✔ 同名跨链资产不能通过正价差被视为盈利机会 (0.18575ms)
+✔ 过期、偏斜和费用估值缺失均阻止基线 (0.435291ms)
+✔ 竞争特征严格使用已知过去，缺口不视作低竞争 (0.424583ms)
+✔ 当周期成交读取尚未完成时，不能用完整窗口掩盖不可见交易 (1.047708ms)
+✔ 跟踪被拦截候选，窗口结束与断档结果为未知 (0.330792ms)
+✔ 库存双腿守恒、费用单扣、事件去重及资金延迟锁定 (0.32975ms)
+✔ 库存不足不透支；单腿失败支付费用并留下真实方向暴露 (0.441833ms)
+✔ 回放完全确定；同一连续价差跨规模不产生独立训练事件 (3.730375ms)
+✔ 重复记录拒绝；三十天清理先保留输入和原始证据 (3.047625ms)
+✔ RPC 拒绝签名或广播方法；429 遵守退避并重试 (1006.124833ms)
+✔ 官方 Raydium SDK 用已捕获账户离线计算指定数量与深度边界 (50.09ms)
+✔ 本地 API 拒绝跨站、非法配置；真实空状态与导出可用 (65.530875ms)
+✔ 快照导出后在空库导入，回放摘要与账本完全相同 (9.218083ms)
+✔ 发现重组后将受影响历史窗口标成未知，不继续使用旧标签 (0.412834ms)
+✔ 网络并发有界，超时记录保留且不伪造成功响应 (924.398875ms)
+✔ 同周期公共状态去重且 slot 只归属各自报价；新周期必须重新读取 (545.232458ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3244.042334
+
+build-final.log
+
+> dda-research@0.1.0 build /Users/silas/Documents/Codex/2026-10-15/wo-y/dda
+> tsc --noEmit && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 15 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:  0.32 kB
+dist/assets/index-CiG9kkkd.css   12.76 kB │ gzip:  3.63 kB
+dist/assets/index-CW4ckrai.js   243.86 kB │ gzip: 77.45 kB
+
+✓ built in 71ms
+
+python-tests-final.log
+test_event_count_alone_is_insufficient (test_evaluate.Gates.test_event_count_alone_is_insufficient) ... ok
+test_insufficient_data_never_trains (test_evaluate.Gates.test_insufficient_data_never_trains) ... ok
+test_offline_pipeline_uses_disjoint_time_windows (test_evaluate.Gates.test_offline_pipeline_uses_disjoint_time_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.632s
+
+OK

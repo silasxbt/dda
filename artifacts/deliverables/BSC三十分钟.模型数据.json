@@ -1,0 +1,12 @@
+{
+  "version": "dda-replay-1.0.0",
+  "gate": {
+    "eligible": false,
+    "days": 0,
+    "events": 0,
+    "positive": 0,
+    "negative": 0,
+    "reason": "至少 7 个 UTC 自然日、1000 个独立可观测事件、两类各 100；数量达标后仍需样本外验证。"
+  },
+  "rows": []
+}

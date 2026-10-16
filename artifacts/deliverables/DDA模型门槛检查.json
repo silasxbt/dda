@@ -1,0 +1,13 @@
+{
+  "gate": {
+    "eligible": false,
+    "days": 0,
+    "events": 0,
+    "positive": 0,
+    "negative": 0
+  },
+  "trained": false,
+  "target": "五秒后报价净额下降或模拟亏损；不表示真实竞争者参与概率",
+  "conclusion": "证据不足，不训练",
+  "inputDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}

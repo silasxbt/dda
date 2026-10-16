@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "session": "27b468f1-075c-4fdf-be85-d56a90215e6b",
+  "digest": "0d72fc68acbb8a65a0bc8c10817ec099bfadf6d229e947bac1b9a76102394b0a",
+  "twiceIdentical": true,
+  "emptyDatabaseIdentical": true,
+  "cycles": 105,
+  "quality": {
+    "cycles": 105,
+    "durationSeconds": 1800.237,
+    "expectedQuotes": 2520,
+    "quotes": 2394,
+    "validQuotes": 1245,
+    "coverage": 0.49404761904761907,
+    "intervalMedianMs": 16286,
+    "intervalP95Ms": 25462,
+    "gaps": 104,
+    "errors": 92,
+    "errorSamples": [
+      {
+        "source": "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU",
+        "message": "Error: failed to get info for multiple accounts, RPC_ERROR, 服务退避中"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq",
+        "message": "Error: failed to get info for multiple accounts, RPC_ERROR, getMultipleAccounts: Rate limit exceeded. To obtain higher limits, please request a personal token or a dedicated node: https://www.allnodes.com/[redacted-path]"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU",
+        "message": "Error: failed to get info for multiple accounts, RPC_ERROR, 服务退避中"
+      },
+      {
+        "source": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+        "message": "Error: failed to get info for multiple accounts, RPC_ERROR, 服务退避中"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq",
+        "message": "Error: failed to get info for multiple accounts, RPC_ERROR, 服务退避中"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      }
+    ],
+    "tradeRecords": 417,
+    "independentEvents": 0,
+    "episodes": 485
+  },
+  "modelGate": {
+    "eligible": false,
+    "days": 0,
+    "events": 0,
+    "positive": 0,
+    "negative": 0,
+    "reason": "至少 7 个 UTC 自然日、1000 个独立可观测事件、两类各 100；数量达标后仍需样本外验证。"
+  }
+}

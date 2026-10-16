@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "session": "ab876929-45a9-441a-b037-182a0121b0cc",
+  "digest": "7241510e6b34add30f448ac1973b9b05087e0816343f43305832f25159c961ce",
+  "twiceIdentical": true,
+  "emptyDatabaseIdentical": true,
+  "cycles": 9,
+  "quality": {
+    "cycles": 9,
+    "durationSeconds": 180.469,
+    "expectedQuotes": 216,
+    "quotes": 216,
+    "validQuotes": 213,
+    "coverage": 0.9861111111111112,
+    "intervalMedianMs": 20603,
+    "intervalP95Ms": 22266,
+    "gaps": 8,
+    "errors": 4,
+    "errorSamples": [
+      {
+        "source": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      }
+    ],
+    "tradeRecords": 28,
+    "independentEvents": 1,
+    "episodes": 45
+  },
+  "modelGate": {
+    "eligible": false,
+    "days": 0,
+    "events": 0,
+    "positive": 0,
+    "negative": 0,
+    "reason": "至少 7 个 UTC 自然日、1000 个独立可观测事件、两类各 100；数量达标后仍需样本外验证。"
+  }
+}

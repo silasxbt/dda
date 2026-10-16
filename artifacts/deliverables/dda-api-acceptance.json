@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-15T09:30:10.623Z",
+  "rows": [
+    {
+      "operation": "one-leg",
+      "result": "PASS",
+      "run": "b21e379c-1db3-448b-80dd-851982e07399"
+    },
+    {
+      "operation": "stop/recover",
+      "result": "PASS",
+      "run": "b21e379c-1db3-448b-80dd-851982e07399"
+    },
+    {
+      "operation": "unwind",
+      "result": "PASS",
+      "run": "b21e379c-1db3-448b-80dd-851982e07399"
+    },
+    {
+      "operation": "real-initialization",
+      "result": "NOT RUN",
+      "evidence": {
+        "state": "done",
+        "result": {
+          "bsc": {
+            "ok": false,
+            "error": "BSC 测试钱包缺少免费 tBNB：请在水龙头领取至少 0.01 tBNB 后重试"
+          },
+          "solana": {
+            "ok": false,
+            "error": "Solana Devnet 免费 SOL 不足，需至少 0.1 SOL，建池可能需要更多租金"
+          }
+        }
+      }
+    },
+    {
+      "operation": "competition",
+      "result": "PASS",
+      "run": "fc0847b0-2dca-4faf-8bf2-7d815235157e"
+    }
+  ]
+}

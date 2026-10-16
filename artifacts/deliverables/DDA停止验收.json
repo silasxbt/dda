@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "serverPort8787": "connection refused after launcher Ctrl+C",
+  "databases": [
+    {
+      "path": "data/dda.sqlite",
+      "running": 0
+    },
+    {
+      "path": "data/serial-check/dda.sqlite",
+      "running": 0
+    },
+    {
+      "path": "data/full-check/dda.sqlite",
+      "running": 0
+    },
+    {
+      "path": "data/final-check/dda.sqlite",
+      "running": 0
+    },
+    {
+      "path": "data/coverage-check/dda.sqlite",
+      "running": 0
+    }
+  ],
+  "collectorLocks": []
+}

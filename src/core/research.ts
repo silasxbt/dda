@@ -1,0 +1,52 @@
+import {createHash} from 'node:crypto';import {findCandidates,outcomes} from './engine.js';import {simulate} from './simulator.js';
+import type {Candidate,Cycle,Session} from '../types.js';
+export const VERSION='dda-replay-1.0.0';
+export function quantile(xs:number[],q:number){if(!xs.length)return null;const a=[...xs].sort((a,b)=>a-b);return a[Math.floor((a.length-1)*q)];}
+export function research(session:Session,input:Cycle[]){
+ const cycles=[...input].sort((a,b)=>a.index-b.index),candidates=findCandidates(session,cycles);
+ // One market episode groups all sizes, directions, and pools. Continuing spreads are not independent events.
+ const event=new Map<string,{positive:boolean;at:number;id:string}>();
+ for(const c of cycles){const rows=candidates.filter(x=>x.cycleId===c.id);for(const market of new Set(rows.map(x=>x.market))){
+  const group=rows.filter(x=>x.market===market),positive=group.some(x=>x.gross>0),prev=event.get(market),at=Math.max(...group.map(x=>x.at));
+  const id=prev&&prev.positive===positive&&at-prev.at<=session.config.intervalMs*2+1000?prev.id:`${c.id}:${market}`;
+  group.forEach(x=>x.episode=id);event.set(market,{positive,at,id});
+ }}
+ const labels=outcomes(session,cycles,candidates),labelMap=new Map(labels.filter(o=>o.horizon===5).map(o=>[o.candidateId,o]));
+ const starts=new Map<string,number>(),ends=new Map<string,number>();for(const c of candidates){starts.set(c.episode,Math.min(starts.get(c.episode)??Infinity,c.at));ends.set(c.episode,Math.max(ends.get(c.episode)??0,c.at));}
+ const episodeIds=[...starts.keys()].sort((a,b)=>starts.get(a)!-starts.get(b)!||a.localeCompare(b));
+ const splitAt=cycles.length?cycles[Math.floor(cycles.length*.6)].startedAt:0;
+ // Purge whole events that cross the boundary and fifteen-second outcome horizon.
+ const training=candidates.filter(c=>ends.get(c.episode)!+15000<splitAt),testing=candidates.filter(c=>starts.get(c.episode)!>=splitAt);
+ const trainDda=simulate(session,training,labels,'DDA 校准',x=>x.dda);
+ const nets=training.filter(x=>x.baseline).map(x=>x.net!).sort((a,b)=>a-b);
+ let threshold=0,objective=Infinity;
+ const thresholds=[0,...Array.from({length:Math.min(30,nets.length)},(_,i)=>nets[Math.floor(i*nets.length/Math.min(30,nets.length))]),(nets.at(-1)??0)+.000001];
+ for(const t of thresholds){const l=simulate(session,training,labels,'严格基线校准',x=>x.baseline&&x.net!>=t);
+  const loss=Math.abs(l.trades-trainDda.trades)/Math.max(1,trainDda.trades)+Math.abs(l.turnover-trainDda.turnover)/Math.max(1,trainDda.turnover)+Math.abs(l.capitalSeconds-trainDda.capitalSeconds)/Math.max(1,trainDda.capitalSeconds);
+  if(loss<objective){objective=loss;threshold=t;}
+ }
+ const finalMarks:Record<string,number>={};for(const c of cycles)for(const q of c.quotes){const p=session.pools.find(p=>p.id===q.poolId);if(p&&q.valid){finalMarks[p.base.id]=p.market==='USDC/USDT'?1:q.spot;finalMarks[p.quote.id]=1;}}
+ const ledgers=[simulate(session,testing,labels,'传统基线',x=>x.baseline,finalMarks),simulate(session,testing,labels,'提高利润门槛',x=>x.baseline&&x.net!>=threshold,finalMarks),simulate(session,testing,labels,'DDA 竞争过滤',x=>x.dda,finalMarks)];
+ const allLedgers=[simulate(session,candidates,labels,'传统基线（描述）',x=>x.baseline,finalMarks),simulate(session,candidates,labels,'DDA（描述）',x=>x.dda,finalMarks)];
+ const independent:Candidate[]=[];const seen=new Set<string>();for(const c of candidates){if(c.gross>0&&!seen.has(c.episode)){seen.add(c.episode);independent.push(c);}}
+ const dataset=independent.flatMap(c=>{const o=labelMap.get(c.id);if(c.crossChain||!c.features.available||o?.status!=='observed')return [];return [{id:c.id,episode:c.episode,at:c.at,eventEnd:ends.get(c.episode)!,labelAt:o.at!,day:new Date(c.at).toISOString().slice(0,10),market:c.market,size:c.size,net:c.netBeforeRebalance,gross:c.gross,impact:Math.max(c.qBuy.priceImpactBps,c.qSell.priceImpactBps),latency:Math.max(c.qBuy.observedAt-c.qBuy.startedAt,c.qSell.observedAt-c.qSell.startedAt),...c.features,label:Number(o.adverse)}];});
+ const days=new Set(dataset.map(x=>x.day)).size,positive=dataset.filter(x=>x.label===1).length,negative=dataset.length-positive;
+ const quotes=cycles.flatMap(c=>c.quotes),expected=cycles.length*session.pools.filter(p=>p.enabled).length*session.config.sizes.length;
+ const intervals=cycles.slice(1).map((c,i)=>c.startedAt-cycles[i].startedAt),errors=cycles.flatMap(c=>c.errors);
+ const blocked=candidates.filter(c=>c.baseline&&!c.dda),knownBlocked=blocked.filter(c=>labelMap.get(c.id)?.status==='observed'),allowed=candidates.filter(c=>c.dda),knownAllowed=allowed.filter(c=>labelMap.get(c.id)?.status==='observed');
+ const rejectionCounts:Record<string,number>={};for(const c of candidates)for(const reason of c.reasons)rejectionCounts[reason]=(rejectionCounts[reason]??0)+1;
+ const summary={baseline:candidates.filter(c=>c.baseline).length,dda:allowed.length,blocked:blocked.length,competitionKnown:candidates.filter(c=>c.features.available).length,observed5:labels.filter(o=>o.horizon===5&&o.status==='observed').length,observed15:labels.filter(o=>o.horizon===15&&o.status==='observed').length,
+  falseBlock:knownBlocked.filter(c=>labelMap.get(c.id)!.pnl!>0).length,falseBlockDenominator:knownBlocked.length,missedLoss:knownAllowed.filter(c=>labelMap.get(c.id)!.pnl!<0).length,missedLossDenominator:knownAllowed.length,rejectionCounts};
+ const distribution=ledgers.map(l=>{const pnl=l.entries.filter(e=>e.status!=='rejected').map(e=>e.pnl);return {name:l.name,n:pnl.length,median:quantile(pnl,.5),p05:quantile(pnl,.05),worst:pnl.length?Math.min(...pnl):null,lossRate:pnl.length?pnl.filter(x=>x<0).length/pnl.length:null};});
+ const quality={cycles:cycles.length,durationSeconds:cycles.length?(cycles.at(-1)!.finishedAt-cycles[0].startedAt)/1000:0,expectedQuotes:expected,quotes:quotes.length,validQuotes:quotes.filter(q=>q.valid).length,coverage:expected?quotes.filter(q=>q.valid).length/expected:null,intervalMedianMs:quantile(intervals,.5),intervalP95Ms:quantile(intervals,.95),gaps:intervals.filter(t=>t>session.config.intervalMs*2).length,errors:errors.length,errorSamples:errors.slice(-10),tradeRecords:cycles.reduce((n,c)=>n+c.trades.length,0),independentEvents:independent.length,episodes:episodeIds.length};
+ const comparison={splitAt,trainingCandidates:training.length,testCandidates:testing.length,purged:candidates.length-training.length-testing.length,threshold,calibrationObjective:Number.isFinite(objective)?objective:null,calibrated:training.some(c=>c.baseline)&&trainDda.trades>0,note:'按时间分组，跨边界事件整组剔除；严格门槛仅在前 60% 校准交易数、名义成交额和资金秒；测试不保证匹配。无成交或匹配不足不作增量有效性结论。'};
+ const modelGate={eligible:days>=7&&dataset.length>=1000&&positive>=100&&negative>=100,days,events:dataset.length,positive,negative,reason:'至少 7 个 UTC 自然日、1000 个独立可观测事件、两类各 100；数量达标后仍需样本外验证。'};
+ const digest=createHash('sha256').update(JSON.stringify({version:VERSION,config:session.config,pools:session.pools,cycles})).digest('hex');
+ return {version:VERSION,session,quality,summary,candidates,outcomes:labels,ledgers,allLedgers,distribution,comparison,modelGate,dataset,digest,conclusion:'证据不足：当前采集只能验证软件与报价链路，不能证明策略有增量价值或可持续盈利。'};
+}
+export type Research=ReturnType<typeof research>;
+const fmt=(x:number|null,d=4)=>x===null?'未知':x.toFixed(d);
+export function markdown(r:Research):string {
+ const {quality:q,session:s}=r;
+ return `# DDA 研究报告\n\n${r.conclusion}\n\n- 会话：${s.id}\n- UTC：${new Date(s.startedAt).toISOString()} → ${s.endedAt?new Date(s.endedAt).toISOString():'采集中'}\n- 状态：${s.status}；回放版本：${r.version}\n- 输入摘要：${r.digest}\n\n## 真实观测与覆盖\n\n| 指标 | 值 |\n|---|---:|\n| 实际观测秒数 | ${fmt(q.durationSeconds,1)} |\n| 周期 / 报价 / 有效报价 | ${q.cycles} / ${q.quotes} / ${q.validQuotes} |\n| 有效报价覆盖（已启用池） | ${q.coverage===null?'未知':fmt(q.coverage*100,1)+'%'} |\n| 采样间隔中位 / P95 | ${fmt(q.intervalMedianMs,0)} / ${fmt(q.intervalP95Ms,0)} ms |\n| 大于两倍目标间隔的断档 | ${q.gaps} |\n| 成交记录 / 错误 | ${q.tradeRecords} / ${q.errors} |\n| 独立正毛利事件 | ${q.independentEvents} |\n| 竞争信息完整的候选 | ${r.summary.competitionKnown} / ${r.candidates.length} |\n| 5 秒 / 15 秒结果可观测 | ${r.summary.observed5} / ${r.summary.observed15} |\n\n## 固定池与资产关系\n\n${s.pools.map(p=>`- ${p.chain} ${p.market}：${p.id}；费率 ${p.fee*100}%；${p.enabled?'启用':'停用：'+p.reason}；基础资产 ${p.base.address}（${p.base.decimals} 位）；${p.base.provenance}`).join('\n')}\n\nBSC 与 Solana 同名资产的发行、封装与兑付路径没有被验证为等价。跨链组合仅展示价差，不计入可盈利机会。稳定币金额按名义 $1 计量，并非美元兑付承诺。\n\n## 成本、库存与情景\n\n指定规模先固定基础币数量，买入 exact-output、卖出 exact-input。DEX 手续费和价格冲击已在报价中，不重复扣除。额外滑点 ${s.config.extraSlippageBps} bps，网络费采用 Quoter gas 估算或 Solana 300000 CU + 5000 lamport 的估算情景，并非实际成交费。\n\n本金 ${s.config.initialCapital}，两链各半、各链稳定币均分。原生币费用余额单列；WBNB/SOL 控制市场没有获得可卖出基础币库存。各策略从同一库存独立回放，每个市场价差事件最多执行一次；5 秒后的双侧报价为模拟成交，未知结果跳过，资金在延迟期间锁定。\n\n再平衡成本：${s.config.rebalance.costBps??'未知'} bps；延迟情景 ${s.config.rebalance.delaySeconds} 秒。当前没有已验证路径，不会发起虚拟跨链搬币；只给再平衡前价差和盈亏平衡成本。失败开关：买腿 ${s.config.failure.buy?'失败':'成功'}，卖腿 ${s.config.failure.sell?'失败':'成功'}，是压力情景而非观测失败率。单腿残余资产按期末观测标记，无法平仓的暴露不当作已实现利润。\n\n## 三组样本外比较（模拟）\n\n${r.comparison.note}\n\n校准候选 ${r.comparison.trainingCandidates}；测试候选 ${r.comparison.testCandidates}；剔除 ${r.comparison.purged}；严格利润门槛 ${fmt(r.comparison.threshold)}；有效校准：${r.comparison.calibrated?'是':'否'}。\n\n| 策略 | 成交 | 交易已实现损益 | 持有基准末值 | 期末值减持有 | 名义成交额 | 资金秒 |\n|---|---:|---:|---:|---:|---:|---:|\n${r.ledgers.map(l=>`| ${l.name} | ${l.trades} | ${fmt(l.realized)} | ${fmt(l.holdValue)} | ${fmt(l.excess)} | ${fmt(l.turnover)} | ${fmt(l.capitalSeconds)} |`).join('\n')}\n\n| 策略 | 样本数 | 中位收益 | 5%分位 | 最差 | 亏损比例 |\n|---|---:|---:|---:|---:|---:|\n${r.distribution.map(d=>`| ${d.name} | ${d.n} | ${fmt(d.median)} | ${fmt(d.p05)} | ${fmt(d.worst)} | ${fmt(d.lossRate)} |`).join('\n')}\n\n误拦（拦截后 5 秒名义净收益仍正）${r.summary.falseBlock}/${r.summary.falseBlockDenominator}；漏放（放行后 5 秒净收益负）${r.summary.missedLoss}/${r.summary.missedLossDenominator}。这是按报价记录的描述统计，同一事件内相关；零分母不表示零风险。缺失标签不进分母；不能据此得出因果结论。\n\n## 模型门槛\n\n${r.modelGate.eligible?'满足数量门槛，尚需离线验证':'未满足，不训练'}：${r.modelGate.days} 天，${r.modelGate.events} 独立事件，恶化 ${r.modelGate.positive}，未恶化 ${r.modelGate.negative}。${r.modelGate.reason}\n\n竞争分数是成交密度、方向压力、重复活跃发送者与集中度的可解释代理，不是经证实的竞争者参与概率。地址为发起人或费用支付者代理；路由器、代付与多地址会影响含义。\n\n## 拦截与异常\n\n${Object.entries(r.summary.rejectionCounts).map(([k,v])=>`- ${k}：${v}`).join('\n')||'无候选'}\n\n${q.errorSamples.map(e=>`- ${e.source}：${e.message}`).join('\n')||'本会话未记录请求异常。'}\n\n## 可重复与不确定性\n\n回放使用 SQLite 中保存的双向报价、时间和成交事实，压缩原始记录可审计；回放不请求当前网络。哈希覆盖版本、配置、固定池和周期输入。采集持续期短、市场覆盖有限、非原子执行未得到真实交易验证。没有足够独立样本，不报告伪精确置信区间；结果保留为证据不足。\n`;
+}

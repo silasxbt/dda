@@ -1,0 +1,31 @@
+[Unit]
+Description=DDA read-only research panel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dda
+Group=dda
+WorkingDirectory=/opt/dda/current
+Environment=NODE_ENV=production
+Environment=PORT=8787
+Environment=DDA_DATA_DIR=/var/lib/dda
+Environment=NODE_OPTIONS=--max-old-space-size=256
+EnvironmentFile=-/etc/dda/dda.env
+ExecStart=/opt/dda/runtime/bin/node /opt/dda/current/build/server.js
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=120
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/dda
+MemoryMax=384M
+TasksMax=64
+CPUWeight=25
+
+[Install]
+WantedBy=multi-user.target

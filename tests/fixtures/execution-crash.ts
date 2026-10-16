@@ -1,0 +1,2 @@
+import {ExecutionStore} from '../../src/execution/store.js';import {ScenarioAdapter} from '../../src/execution/scenario.js';import {ExecutionEngine} from '../../src/execution/engine.js';
+const [root,stage]=process.argv.slice(2),store=new ExecutionStore(root,true),a=new ScenarioAdapter(store),engine=new ExecutionEngine(store,{scenario:a,testnet:a},async s=>{if(s===stage){process.send?.(s);await new Promise(()=>{});}});engine.launch('scenario','success','killed-process');setInterval(()=>{},1000);

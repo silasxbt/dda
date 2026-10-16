@@ -1,0 +1,74 @@
+{
+  "staged_files": 137,
+  "submodules": 3,
+  "total_bytes": 129491719,
+  "largest_files": [
+    [
+      24965120,
+      "artifacts/research-data/dda.sqlite"
+    ],
+    [
+      18387169,
+      "artifacts/deliverables/八池三十分钟.结果.json"
+    ],
+    [
+      15369227,
+      "artifacts/research-data/raw/e90995e9-bcfe-4643-87c0-a6b0aa2aca81.ndjson.gz"
+    ],
+    [
+      15369227,
+      "artifacts/deliverables/BSC三十分钟.raw.ndjson.gz"
+    ],
+    [
+      11309827,
+      "artifacts/research-data/raw/27b468f1-075c-4fdf-be85-d56a90215e6b.ndjson.gz"
+    ]
+  ],
+  "scanned_objects_including_archive_members": 301,
+  "expanded_bytes": 530107074,
+  "known_wallet_secret_variants_checked": 0,
+  "forbidden_paths": [],
+  "findings": [],
+  "sqlite_integrity": [
+    {
+      "file": "artifacts/research-data/coverage-check/dda.sqlite",
+      "result": [
+        [
+          "ok"
+        ]
+      ]
+    },
+    {
+      "file": "artifacts/research-data/dda.sqlite",
+      "result": [
+        [
+          "ok"
+        ]
+      ]
+    },
+    {
+      "file": "artifacts/research-data/final-check/dda.sqlite",
+      "result": [
+        [
+          "ok"
+        ]
+      ]
+    },
+    {
+      "file": "artifacts/research-data/full-check/dda.sqlite",
+      "result": [
+        [
+          "ok"
+        ]
+      ]
+    },
+    {
+      "file": "artifacts/research-data/serial-check/dda.sqlite",
+      "result": [
+        [
+          "ok"
+        ]
+      ]
+    }
+  ]
+}

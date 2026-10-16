@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "activeCollector": null,
+  "checks": [
+    {
+      "session": "e90995e9-bcfe-4643-87c0-a6b0aa2aca81",
+      "status": "PASS",
+      "digest": "2c7ed0c305b453de1b86e059fc40974b9db13d9fa7a196f094f489151ac3a034",
+      "replay": {
+        "digest": "2c7ed0c305b453de1b86e059fc40974b9db13d9fa7a196f094f489151ac3a034",
+        "cycles": 118
+      },
+      "exports": {
+        "report": {
+          "bytes": 6705,
+          "sha256": "9823fa5651caacc20084882552f28abaae2004e4e8e580eb2612c21b3c10a33f"
+        },
+        "csv": {
+          "bytes": 635367,
+          "sha256": "c1e0b2d462f81de65a616eca3535566d001cde0a5fac76164756f1f532c7bb30"
+        },
+        "snapshot": {
+          "bytes": 275390,
+          "sha256": "cf69a44a3ff19ca577026d14b4524e9890ef812d69323b1b331a836da37e2774"
+        },
+        "raw": {
+          "bytes": 15369227,
+          "sha256": "a4623aafbfd2a7fee2ebd744d9fada012294f70f58b2274cdfd86df412f2cbfa"
+        },
+        "dataset": {
+          "bytes": 240,
+          "sha256": "ad7ab871dbb8ded27c7d4c2653e0543c63d8719694085326333bf9042b84b48a"
+        }
+      }
+    },
+    {
+      "session": "27b468f1-075c-4fdf-be85-d56a90215e6b",
+      "status": "PASS",
+      "digest": "0d72fc68acbb8a65a0bc8c10817ec099bfadf6d229e947bac1b9a76102394b0a",
+      "replay": {
+        "digest": "0d72fc68acbb8a65a0bc8c10817ec099bfadf6d229e947bac1b9a76102394b0a",
+        "cycles": 105
+      },
+      "exports": {
+        "report": {
+          "bytes": 8054,
+          "sha256": "0ae4d0e5264f2fd9adbb2866a6754d2e0ce195ebc431c31c6bf7e34c62af9b4a"
+        },
+        "csv": {
+          "bytes": 2304760,
+          "sha256": "2ff5ce6758cc70d75f7051a8b12c714ec61dadc253d8adb6602b0ecf87b5a2f0"
+        },
+        "snapshot": {
+          "bytes": 169806,
+          "sha256": "d6dceb92a95b1e9ccb6683ce2f3d1c4d136052db7ef6239c8f1a17b77d1e609d"
+        },
+        "raw": {
+          "bytes": 11309827,
+          "sha256": "9a3b79b5d3b6a5e34d3d0e83587a811eba5de11ae7605d09bc4ee2c0cbfe870c"
+        },
+        "dataset": {
+          "bytes": 240,
+          "sha256": "ad7ab871dbb8ded27c7d4c2653e0543c63d8719694085326333bf9042b84b48a"
+        }
+      }
+    },
+    {
+      "session": "ab876929-45a9-441a-b037-182a0121b0cc",
+      "status": "PASS",
+      "digest": "7241510e6b34add30f448ac1973b9b05087e0816343f43305832f25159c961ce",
+      "replay": {
+        "digest": "7241510e6b34add30f448ac1973b9b05087e0816343f43305832f25159c961ce",
+        "cycles": 9
+      },
+      "exports": {
+        "report": {
+          "bytes": 6971,
+          "sha256": "7d8564ef1827fbe2ad2c68557a1fe20de86920cf15d1b0487171a9de9412e051"
+        },
+        "csv": {
+          "bytes": 213902,
+          "sha256": "69b28b615fa6f2178116d855bf8fe7ccfb3bd301481da568affdc14366a50c2c"
+        },
+        "snapshot": {
+          "bytes": 17190,
+          "sha256": "d799c4f3c8e647cac947efa1bbc6f5fd59b8233cd8e5e4c400e18376a4d5ad95"
+        },
+        "raw": {
+          "bytes": 890400,
+          "sha256": "1c81abc2b09ae0d91b57ef41fbf783ddd6a9c758cb25760cc0e29a91671eb59a"
+        },
+        "dataset": {
+          "bytes": 240,
+          "sha256": "ad7ab871dbb8ded27c7d4c2653e0543c63d8719694085326333bf9042b84b48a"
+        }
+      }
+    },
+    {
+      "session": "c69836ac-8b80-477a-ad51-33d1bee7a297",
+      "status": "PASS",
+      "digest": "8919548450ff77764939d2770c3d599db850f6d6dee5e63b6f3caa834aeb57ba",
+      "replay": {
+        "digest": "8919548450ff77764939d2770c3d599db850f6d6dee5e63b6f3caa834aeb57ba",
+        "cycles": 7
+      },
+      "exports": {
+        "report": {
+          "bytes": 6969,
+          "sha256": "7f8924657b1e059070186edbb55f69abbbff5b1e596403576d4a30f238eab348"
+        },
+        "csv": {
+          "bytes": 165870,
+          "sha256": "d252b2909c1252779436bbb6c2093c9b114e03f617778a32b6aa0eaae610efa0"
+        },
+        "snapshot": {
+          "bytes": 13265,
+          "sha256": "df18d581de5ce8b3c8668ab52cdf83bed2646bfbd6664a2a6e1c0cd2604e0ffd"
+        },
+        "raw": {
+          "bytes": 932346,
+          "sha256": "bdd818f566d18c591053ada1c8116b77765847625b59ce84d0dfb3ff01d3bb34"
+        },
+        "dataset": {
+          "bytes": 240,
+          "sha256": "ad7ab871dbb8ded27c7d4c2653e0543c63d8719694085326333bf9042b84b48a"
+        }
+      }
+    }
+  ],
+  "note": "HTTP 接口验证；不替代尚未完成的页面停止按钮与浏览器下载交互验证。"
+}

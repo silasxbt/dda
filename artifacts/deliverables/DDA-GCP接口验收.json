@@ -1,0 +1,91 @@
+{
+  "session": "d286ab8c-2f6c-4598-8701-253bbc223bd4",
+  "initialIdle": true,
+  "stopped": true,
+  "replays": [
+    {
+      "digest": "cbf20dca5dde93935f6f86aaaf9091a1885cacfe98897438234f0bf0d400b780",
+      "cycles": 8
+    },
+    {
+      "digest": "cbf20dca5dde93935f6f86aaaf9091a1885cacfe98897438234f0bf0d400b780",
+      "cycles": 8
+    }
+  ],
+  "exports": {
+    "report": {
+      "bytes": 7159,
+      "sha256": "bc598167d9950db09567d989c2ba8109819d9b395eb5e8dae27c3463a4e7ff22"
+    },
+    "csv": {
+      "bytes": 182381,
+      "sha256": "0eb9a71427e2cc44d49a73b230f94e57dfd29b9ecd7aecb24fb510279858e9e9"
+    },
+    "snapshot": {
+      "bytes": 18471,
+      "sha256": "8b7f109d8a85cf9ce642e01ff8b4fc5c951dc6693c889ad9c6b04a3a37a38037"
+    },
+    "raw": {
+      "bytes": 1230677,
+      "sha256": "507366222c2abcfa68a4e16683c7eb6be8e88859535b7af20e34714fdc8fb4ed"
+    },
+    "dataset": {
+      "bytes": 240,
+      "sha256": "ad7ab871dbb8ded27c7d4c2653e0543c63d8719694085326333bf9042b84b48a"
+    }
+  },
+  "quality": {
+    "cycles": 8,
+    "durationSeconds": 93.401,
+    "expectedQuotes": 192,
+    "quotes": 192,
+    "validQuotes": 192,
+    "coverage": 1,
+    "intervalMedianMs": 12181,
+    "intervalP95Ms": 12297,
+    "gaps": 7,
+    "errors": 5,
+    "errorSamples": [
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      },
+      {
+        "source": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq:trades",
+        "message": "Error: getTransaction: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: \"maxSupportedTransactionVersion\": 1"
+      }
+    ],
+    "tradeRecords": 57,
+    "independentEvents": 0,
+    "episodes": 40
+  },
+  "modelGate": {
+    "eligible": false,
+    "days": 0,
+    "events": 0,
+    "positive": 0,
+    "negative": 0,
+    "reason": "至少 7 个 UTC 自然日、1000 个独立可观测事件、两类各 100；数量达标后仍需样本外验证。"
+  },
+  "afterServiceRestart": {
+    "idle": true,
+    "sessionRetained": true,
+    "replayUnchanged": true,
+    "replay": {
+      "digest": "cbf20dca5dde93935f6f86aaaf9091a1885cacfe98897438234f0bf0d400b780",
+      "cycles": 8
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-15T09:12:57.602Z",
+  "wallets": {
+    "bsc": "0x967e8e92f4fdF5a729b98ca0324C5bec600168d6",
+    "solana": "9tKH9sUYQb1gzRP1J99VNyMqZW2uSGpT8TTFFupjzJkg"
+  },
+  "environment": {
+    "at": 1792055570145,
+    "chains": {
+      "bsc": {
+        "ok": true,
+        "info": {
+          "network": "BSC Testnet",
+          "chainId": 97,
+          "contracts": {
+            "factory": "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865",
+            "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+            "position": "0x427bf5b37357632377ecbec9de3626c71a5396c1",
+            "quoter": "0xbc203d7f83677c7ed3f7acec959963e7f4ecc5c2"
+          }
+        },
+        "market": {
+          "price": ".98"
+        },
+        "balances": {
+          "bsc:native": "0",
+          "bsc:A": "0",
+          "bsc:B": "0"
+        }
+      },
+      "solana": {
+        "ok": true,
+        "info": {
+          "network": "Solana Devnet",
+          "program": "DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH"
+        },
+        "market": {
+          "price": "1.02"
+        },
+        "balances": {
+          "solana:native": "0",
+          "solana:A": "0",
+          "solana:B": "0"
+        }
+      }
+    }
+  },
+  "airdrop": {
+    "error": "测试 RPC requestAirdrop: Internal error"
+  },
+  "swapAcceptance": "NOT RUN",
+  "reason": "尚未取得免费测试币并初始化自有池"
+}

@@ -1,0 +1,35 @@
+采集过程中资源与监听
+NRestarts=0
+MemoryCurrent=143773696
+TasksCurrent=11
+MemoryMax=402653184
+ActiveState=active
+SubState=running
+enabled
+State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
+LISTEN 0      511        127.0.0.1:8787      0.0.0.0:*    users:(("MainThread",pid=2837051,fd=24))
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+0 loaded units listed.
+ 08:34:38 up 23 days, 22:17,  0 user,  load average: 0.36, 0.82, 10.00
+
+服务重启后检查
+NRestarts=0
+ExecMainStartTimestamp=Thu 2026-10-15 08:35:58 UTC
+MemoryCurrent=63827968
+ActiveState=active
+SubState=running
+enabled
+e02a9e918628ee82cb73f2283beeec7eedd1deedb3abd978749d5e11bc901e88  build/server.js
+8d1150e64338301d4529b72b8aa7b55838d7dacaa0c5d077dda28ae2ff511fff  dist/index.html
+ce2bc5ec17fb7e080e53670d53a070225da6d70a398ad35fe3504cd2140087f5  pnpm-lock.yaml
+dda dda 700 /var/lib/dda
+root root 755 /opt/dda/runtime/bin/node
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+0 loaded units listed.
+
+本地核心产物散列
+e02a9e918628ee82cb73f2283beeec7eedd1deedb3abd978749d5e11bc901e88  build/server.js
+8d1150e64338301d4529b72b8aa7b55838d7dacaa0c5d077dda28ae2ff511fff  dist/index.html
+ce2bc5ec17fb7e080e53670d53a070225da6d70a398ad35fe3504cd2140087f5  pnpm-lock.yaml
+
+详细接口与持久化证据见 DDA-GCP接口验收.json。

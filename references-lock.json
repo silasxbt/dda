@@ -1,0 +1,26 @@
+{
+  "checked_on": "2026-10-15",
+  "repositories": [
+    {
+      "name": "EVM-Arbitrage-Bot",
+      "url": "https://github.com/OnlyF0uR/EVM-Arbitrage-Bot.git",
+      "commit": "ab93a3608a4ebd70ab51f540bfe4f0eb402c8e43",
+      "status": "",
+      "submodules": ""
+    },
+    {
+      "name": "cross-chain-arbs-simple",
+      "url": "https://github.com/boz1/cross-chain-arbs-simple.git",
+      "commit": "bcbb7bd3a11133dede8d8bbc72f0d9252b71e339",
+      "status": "",
+      "submodules": ""
+    },
+    {
+      "name": "onchain-arbitrage-colearn",
+      "url": "https://github.com/qiaopengjun5162/onchain-arbitrage-colearn.git",
+      "commit": "4b3f0d44f673c6b36c92c444ddcf06073f617943",
+      "status": "",
+      "submodules": ""
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+[project]
+name = "dda-offline-research"
+version = "0.1.0"
+requires-python = ">=3.12,<3.15"
+dependencies = ["scikit-learn>=1.7,<2"]
+
+[tool.uv]
+package = false
