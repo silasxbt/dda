@@ -41,3 +41,7 @@ Raydium SDK 的 tickData 索引键与计算报价所需的 tick array 地址键�
 ## L-009 恢复证据须跨真实进程边界
 
 只抛异常不足以证明 WAL 能恢复。现用子进程到达签名、提交边界后 SIGKILL，再以新进程状态恢复，核验原交易查询、敞口与广播次数。停止标志需在存储层单调保持，避免执行任务的旧对象覆盖停止请求。预检查仅无签名模拟；正式签名后直接返回持久化，不能先签名再做可能失败的额外网络检查。
+
+## L-010 公共节点的真实约束要先测再设计
+
+2026-10-19 覆盖率优化前实测：publicnode Solana 的 getMultipleAccounts 单次最多 10 个账户（12 个即 403），不支持批量 JSON-RPC（400）；约 70% 的 SOL/USDC 池交易已是 version 1，需 maxSupportedTransactionVersion 1 与 jsonParsed 才能读到；BSC getLogs 结果自带 blockTimestamp；BSC 负载均衡下 finalized 标签可等于甚至高于 latest，不能当终局性依据。原实现把 SDK 的账户读取拆成 5 个一批串行，单池 7–8 次往返、slot 跨度中位 36，Solana 报价因此全部过期；BSC 每条日志各读一次区块头和交易。改为按学到的账户集合一次快照、全部 BSC 池一次 Multicall、成交独立后台游标后，同一并发上限下请求数和间隔都明显下降（数字见 notes/acceptance.md）。剩余瓶颈是 DDA-005 的全局并发 2 由两个不同公共端点合用；继续提高成交覆盖需要单独的产品决定，不能靠放宽时效或完整性门禁。

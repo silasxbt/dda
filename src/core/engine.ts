@@ -5,7 +5,8 @@ export function features(pools:string[],at:number,trades:Trade[],coverage:Covera
  const blank=(reason:string):Features=>({available:false,count:0,swapsPerSecond:0,sameDirectionShare:0,repeatShare:0,concentration:0,score:null,reason});
  // Require a continuous, complete past window; no observations from after decision time.
  for(const poolId of pools){
-  const intervals=coverage.filter(c=>c.poolId===poolId&&c.through<=at&&c.through>=at-30000).sort((a,b)=>a.from-b.from);
+  // Coverage counts only once it was known (availableAt); older sessions without the field keep cycle-order availability.
+  const intervals=coverage.filter(c=>c.poolId===poolId&&c.through<=at&&c.through>=at-30000&&(c.availableAt===undefined||c.availableAt<=at)).sort((a,b)=>a.from-b.from);
   let end=at-30000;
   for(const c of intervals){if(!c.complete&&c.through>end)return blank(c.reason??'成交覆盖不完整');if(c.from>end+1000)break;end=Math.max(end,c.through);}
   if(end<at-cfg.maxAgeMs)return blank('决策前 30 秒成交窗口不完整');
@@ -46,6 +47,8 @@ export function findCandidates(s:Session,cycles:Cycle[]):Candidate[]{
  for(const c of cycles){
   // Trades are eligible by their actual availability timestamp, even in the same cycle.
   for(const t of c.trades)if(!seen.has(t.id)){seen.add(t.id);trades.push(t);}
+  // Coverage stamped with availableAt is usable within its own cycle once known; legacy records wait for the next cycle.
+  coverage.push(...c.coverage.filter(x=>x.availableAt!==undefined));
   for(const b of c.quotes)for(const a of c.quotes){
    if(b.poolId===a.poolId||b.market!==a.market||b.size!==a.size||!pools.has(b.poolId)||!pools.has(a.poolId))continue;
    if(b.chain!==a.chain&&b.market!=='USDC/USDT')continue;
@@ -53,7 +56,7 @@ export function findCandidates(s:Session,cycles:Cycle[]):Candidate[]{
    const id=prev&&prev.positive===positive&&x.at-prev.at<=s.config.intervalMs*2+1000?prev.id:x.id;
    x.episode=id;events.set(key,{at:x.at,id,positive});result.push(x);
   }
-  coverage.push(...c.coverage);
+  coverage.push(...c.coverage.filter(x=>x.availableAt===undefined));
  }
  return result;
 }

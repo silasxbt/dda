@@ -1,0 +1,309 @@
+{
+ "session": "aa2d84ff-0fa0-4f5a-82c3-73a68d702657",
+ "startedAt": "2026-10-19T10:27:08.012Z",
+ "status": "completed",
+ "cycles": 67,
+ "durationMinutes": 30.05505,
+ "intervalMedianMs": 22789,
+ "intervalP95Ms": 44554,
+ "gaps": 66,
+ "validQuoteShare": 0.6194029850746269,
+ "competitionKnown": 0,
+ "candidates": 2142,
+ "observed5": 0,
+ "observed15": 0,
+ "labelsExpected": 2142,
+ "requestsPerCycle": 40.38805970149254,
+ "rateLimited": 0,
+ "timeouts": 52,
+ "requests": {
+  "bsc-rpc eth_getBlockByNumber": {
+   "n": 224,
+   "errors": 21,
+   "rateLimited": 0,
+   "timeouts": 8,
+   "medianMs": 400
+  },
+  "bsc-rpc eth_call": {
+   "n": 368,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 392
+  },
+  "bsc-rpc eth_gasPrice": {
+   "n": 46,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 387
+  },
+  "solana-rpc getMultipleAccounts": {
+   "n": 1517,
+   "errors": 89,
+   "rateLimited": 0,
+   "timeouts": 35,
+   "medianMs": 399
+  },
+  "solana-rpc getEpochInfo": {
+   "n": 46,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 382
+  },
+  "solana-rpc getRecentPrioritizationFees": {
+   "n": 46,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 387
+  },
+  "solana-rpc getBlockTime": {
+   "n": 179,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 383
+  },
+  "bsc-rpc eth_getLogs": {
+   "n": 62,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 400
+  },
+  "bsc-rpc eth_getTransactionByHash": {
+   "n": 98,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 386
+  },
+  "solana-rpc getSignaturesForAddress": {
+   "n": 78,
+   "errors": 25,
+   "rateLimited": 0,
+   "timeouts": 9,
+   "medianMs": 420
+  },
+  "solana-rpc getTransaction": {
+   "n": 42,
+   "errors": 19,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 397
+  }
+ },
+ "byPool": [
+  {
+   "pool": "0x92b7807bF19b7DDdf89b706143896d05228f3121",
+   "chain": "bsc",
+   "market": "USDC/USDT",
+   "expectedQuotes": 201,
+   "quotes": 138,
+   "valid": 138,
+   "validShare": 0.6865671641791045,
+   "medianQuoteMs": 1939,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 63,
+   "completeWindows": 13,
+   "coveredSeconds": 291,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 19,
+   "reasons": {
+    "成交:成交读取预算耗尽": 39,
+    "成交:成交窗口截断或交易身份缺失": 11,
+    "错误:部分报价档位缺失或深度不足": 21
+   }
+  },
+  {
+   "pool": "0x4f31Fa980a675570939B737Ebdde0471a4Be40Eb",
+   "chain": "bsc",
+   "market": "USDC/USDT",
+   "expectedQuotes": 201,
+   "quotes": 138,
+   "valid": 138,
+   "validShare": 0.6865671641791045,
+   "medianQuoteMs": 2339,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 60,
+   "completeWindows": 11,
+   "coveredSeconds": 443,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 18,
+   "reasons": {
+    "成交:成交读取预算耗尽": 43,
+    "成交:成交窗口截断或交易身份缺失": 6,
+    "错误:部分报价档位缺失或深度不足": 21
+   }
+  },
+  {
+   "pool": "0x172fcD41E0913e95784454622d1c3724f546f849",
+   "chain": "bsc",
+   "market": "WBNB/USDT",
+   "expectedQuotes": 201,
+   "quotes": 138,
+   "valid": 138,
+   "validShare": 0.6865671641791045,
+   "medianQuoteMs": 2166,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 57,
+   "completeWindows": 0,
+   "coveredSeconds": 0,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 37,
+   "reasons": {
+    "成交:成交窗口截断或交易身份缺失": 15,
+    "成交:成交读取预算耗尽": 42,
+    "错误:部分报价档位缺失或深度不足": 21
+   }
+  },
+  {
+   "pool": "0x36696169C63e42cd08ce11f5deeBbCeBae652050",
+   "chain": "bsc",
+   "market": "WBNB/USDT",
+   "expectedQuotes": 201,
+   "quotes": 138,
+   "valid": 138,
+   "validShare": 0.6865671641791045,
+   "medianQuoteMs": 2528,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 54,
+   "completeWindows": 0,
+   "coveredSeconds": 0,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 25,
+   "reasons": {
+    "成交:成交读取预算耗尽": 48,
+    "成交:成交窗口截断或交易身份缺失": 6,
+    "错误:部分报价档位缺失或深度不足": 21
+   }
+  },
+  {
+   "pool": "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU",
+   "chain": "solana",
+   "market": "USDC/USDT",
+   "expectedQuotes": 201,
+   "quotes": 138,
+   "valid": 51,
+   "validShare": 0.2537313432835821,
+   "medianQuoteMs": 6361,
+   "slotSpanMedian": 17,
+   "slotSpanP95": 19,
+   "coverageWindows": 67,
+   "completeWindows": 0,
+   "coveredSeconds": 0,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 0,
+   "reasons": {
+    "报价:状态跨 slot 范围过大": 87,
+    "成交:成交读取预算耗尽": 46,
+    "成交:Error: getTransaction: Transaction version (1) is not suppor": 1,
+    "成交:成交窗口截断、首次同步或解析缺失": 4,
+    "成交:TypeError: fetch failed": 10,
+    "成交:TimeoutError: The operation was aborted due to timeout": 6,
+    "错误:Error: getTransaction: Transaction version (1) is not suppor": 1,
+    "错误:TypeError: fetch failed": 10,
+    "错误:Error: failed to get info for multiple accounts, RPC_ERROR, ": 21,
+    "错误:TimeoutError: The operation was aborted due to timeout": 6
+   }
+  },
+  {
+   "pool": "3NeUgARDmFgnKtkJLqUcEUNCfknFCcGsFfMJCtx6bAgx",
+   "chain": "solana",
+   "market": "USDC/USDT",
+   "expectedQuotes": 201,
+   "quotes": 129,
+   "valid": 129,
+   "validShare": 0.6417910447761194,
+   "medianQuoteMs": 3649,
+   "slotSpanMedian": 11,
+   "slotSpanP95": 13,
+   "coverageWindows": 67,
+   "completeWindows": 4,
+   "coveredSeconds": 355.277,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 1,
+   "reasons": {
+    "成交:成交读取预算耗尽": 53,
+    "成交:Error: getTransaction: Transaction version (1) is not suppor": 6,
+    "成交:TypeError: fetch failed": 2,
+    "成交:成交窗口截断、首次同步或解析缺失": 1,
+    "成交:TimeoutError: The operation was aborted due to timeout": 1,
+    "错误:Error: failed to get info for multiple accounts, RPC_ERROR, ": 23,
+    "错误:Error: getTransaction: Transaction version (1) is not suppor": 6,
+    "错误:Error: getBlockTime: Block not available for slot 458802055": 1,
+    "错误:TypeError: fetch failed": 2,
+    "错误:TimeoutError: The operation was aborted due to timeout": 1
+   }
+  },
+  {
+   "pool": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+   "chain": "solana",
+   "market": "SOL/USDC",
+   "expectedQuotes": 201,
+   "quotes": 135,
+   "valid": 135,
+   "validShare": 0.6716417910447762,
+   "medianQuoteMs": 3789,
+   "slotSpanMedian": 14,
+   "slotSpanP95": 16,
+   "coverageWindows": 67,
+   "completeWindows": 0,
+   "coveredSeconds": 0,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 5,
+   "reasons": {
+    "成交:成交读取预算耗尽": 48,
+    "成交:Error: getTransaction: Transaction version (1) is not suppor": 4,
+    "成交:成交窗口截断、首次同步或解析缺失": 12,
+    "成交:TimeoutError: The operation was aborted due to timeout": 2,
+    "成交:TypeError: fetch failed": 1,
+    "错误:Error: getTransaction: Transaction version (1) is not suppor": 4,
+    "错误:Error: failed to get info for multiple accounts, RPC_ERROR, ": 22,
+    "错误:TimeoutError: The operation was aborted due to timeout": 2,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq",
+   "chain": "solana",
+   "market": "SOL/USDC",
+   "expectedQuotes": 201,
+   "quotes": 132,
+   "valid": 129,
+   "validShare": 0.6417910447761194,
+   "medianQuoteMs": 3774,
+   "slotSpanMedian": 14,
+   "slotSpanP95": 16,
+   "coverageWindows": 67,
+   "completeWindows": 0,
+   "coveredSeconds": 0,
+   "ingestLagMedianMs": null,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 10,
+   "reasons": {
+    "报价:状态跨 slot 范围过大": 3,
+    "成交:成交读取预算耗尽": 43,
+    "成交:Error: getTransaction: Transaction version (1) is not suppor": 8,
+    "成交:成交窗口截断、首次同步或解析缺失": 13,
+    "成交:TypeError: fetch failed": 3,
+    "错误:Error: getTransaction: Transaction version (1) is not suppor": 8,
+    "错误:Error: failed to get info for multiple accounts, RPC_ERROR, ": 23,
+    "错误:TypeError: fetch failed": 3
+   }
+  }
+ ]
+}

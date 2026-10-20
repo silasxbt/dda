@@ -1,0 +1,276 @@
+{
+ "session": "53bdef0c-720b-4cf8-8a3b-7ebba34b3503",
+ "startedAt": "2026-10-20T04:00:15.285Z",
+ "status": "completed",
+ "cycles": 326,
+ "durationMinutes": 30.069233333333333,
+ "intervalMedianMs": 5474,
+ "intervalP95Ms": 6290,
+ "gaps": 1,
+ "validQuoteShare": 0.9980828220858896,
+ "competitionKnown": 1896,
+ "candidates": 15606,
+ "observed5": 7302,
+ "observed15": 6996,
+ "labelsExpected": 15606,
+ "requestsPerCycle": 25.779141104294478,
+ "rateLimited": 0,
+ "timeouts": 0,
+ "requests": {
+  "bsc-rpc eth_getBlockByNumber": {
+   "n": 1161,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 348
+  },
+  "solana-rpc getEpochInfo": {
+   "n": 326,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 342
+  },
+  "solana-rpc getMultipleAccounts": {
+   "n": 2617,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 423
+  },
+  "solana-rpc getRecentPrioritizationFees": {
+   "n": 326,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 339
+  },
+  "bsc-rpc eth_call": {
+   "n": 325,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 413
+  },
+  "bsc-rpc eth_gasPrice": {
+   "n": 325,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 337
+  },
+  "bsc-rpc eth_getLogs": {
+   "n": 373,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 489
+  },
+  "solana-rpc getSignaturesForAddress": {
+   "n": 454,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 366
+  },
+  "solana-rpc getTransaction": {
+   "n": 653,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 377
+  },
+  "bsc-rpc eth_getTransactionByHash": {
+   "n": 540,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 342
+  },
+  "solana-rpc getBlockTime": {
+   "n": 1304,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 341
+  }
+ },
+ "byPool": [
+  {
+   "pool": "0x92b7807bF19b7DDdf89b706143896d05228f3121",
+   "chain": "bsc",
+   "market": "USDC/USDT",
+   "expectedQuotes": 978,
+   "quotes": 975,
+   "valid": 975,
+   "validShare": 0.9969325153374233,
+   "medianQuoteMs": 1982,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 193,
+   "completeWindows": 192,
+   "coveredSeconds": 1791,
+   "ingestLagMedianMs": 11661,
+   "complete30sWindowShare": 0.1165644171779141,
+   "tradeRecords": 146,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "0x4f31Fa980a675570939B737Ebdde0471a4Be40Eb",
+   "chain": "bsc",
+   "market": "USDC/USDT",
+   "expectedQuotes": 978,
+   "quotes": 975,
+   "valid": 975,
+   "validShare": 0.9969325153374233,
+   "medianQuoteMs": 1982,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 193,
+   "completeWindows": 192,
+   "coveredSeconds": 1791,
+   "ingestLagMedianMs": 11661,
+   "complete30sWindowShare": 0.1165644171779141,
+   "tradeRecords": 58,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "0x172fcD41E0913e95784454622d1c3724f546f849",
+   "chain": "bsc",
+   "market": "WBNB/USDT",
+   "expectedQuotes": 978,
+   "quotes": 975,
+   "valid": 975,
+   "validShare": 0.9969325153374233,
+   "medianQuoteMs": 1982,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 178,
+   "completeWindows": 177,
+   "coveredSeconds": 218,
+   "ingestLagMedianMs": 794916,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 351,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "0x36696169C63e42cd08ce11f5deeBbCeBae652050",
+   "chain": "bsc",
+   "market": "WBNB/USDT",
+   "expectedQuotes": 978,
+   "quotes": 975,
+   "valid": 975,
+   "validShare": 0.9969325153374233,
+   "medianQuoteMs": 1982,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 178,
+   "completeWindows": 177,
+   "coveredSeconds": 218,
+   "ingestLagMedianMs": 794916,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 8,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU",
+   "chain": "solana",
+   "market": "USDC/USDT",
+   "expectedQuotes": 978,
+   "quotes": 978,
+   "valid": 978,
+   "validShare": 1,
+   "medianQuoteMs": 5446,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 2,
+   "coverageWindows": 167,
+   "completeWindows": 166,
+   "coveredSeconds": 1795.4779999999996,
+   "ingestLagMedianMs": 3116,
+   "complete30sWindowShare": 0.6748466257668712,
+   "tradeRecords": 14,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1
+   }
+  },
+  {
+   "pool": "3NeUgARDmFgnKtkJLqUcEUNCfknFCcGsFfMJCtx6bAgx",
+   "chain": "solana",
+   "market": "USDC/USDT",
+   "expectedQuotes": 978,
+   "quotes": 978,
+   "valid": 978,
+   "validShare": 1,
+   "medianQuoteMs": 5450,
+   "slotSpanMedian": 2,
+   "slotSpanP95": 3,
+   "coverageWindows": 170,
+   "completeWindows": 169,
+   "coveredSeconds": 3402.5349999999994,
+   "ingestLagMedianMs": 3282,
+   "complete30sWindowShare": 0.6380368098159509,
+   "tradeRecords": 7,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1
+   }
+  },
+  {
+   "pool": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+   "chain": "solana",
+   "market": "SOL/USDC",
+   "expectedQuotes": 978,
+   "quotes": 975,
+   "valid": 975,
+   "validShare": 0.9969325153374233,
+   "medianQuoteMs": 5453,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 3,
+   "coverageWindows": 108,
+   "completeWindows": 99,
+   "coveredSeconds": 525.386,
+   "ingestLagMedianMs": 143263,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 185,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "成交:签名分页未追平游标": 8,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq",
+   "chain": "solana",
+   "market": "SOL/USDC",
+   "expectedQuotes": 978,
+   "quotes": 978,
+   "valid": 978,
+   "validShare": 1,
+   "medianQuoteMs": 5456,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 2,
+   "coverageWindows": 148,
+   "completeWindows": 146,
+   "coveredSeconds": 1729.7990000000002,
+   "ingestLagMedianMs": 14608,
+   "complete30sWindowShare": 0.1901840490797546,
+   "tradeRecords": 264,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "成交:签名分页未追平游标": 1,
+    "错误:TypeError: fetch failed": 1
+   }
+  }
+ ]
+}
