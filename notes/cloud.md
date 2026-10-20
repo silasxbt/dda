@@ -8,7 +8,7 @@
 - 面板：127.0.0.1:8787，独立 dda.service 和 dda 系统用户。
 - 程序：/opt/dda/releases/<版本>；/opt/dda/current 指向当前版本。
 - 独立运行时：/opt/dda/runtime，固定 Node v24.15.0，不替换其他应用的 Node。
-- 唯一数据目录：/var/lib/dda（与 deploy/dda.service 一致）。发布包不包含数据；禁止用本地空目录覆盖。
+- 唯一数据目录：/var/lib/dda。发布包不包含数据；禁止用本地空目录覆盖。
 - 节点配置：/etc/dda/dda.env，root 写、dda 组读，默认免费公共节点。
 - 云端暂不安装 Python 模型环境；导出建模数据后使用本地 research/uv.lock 环境。
 
