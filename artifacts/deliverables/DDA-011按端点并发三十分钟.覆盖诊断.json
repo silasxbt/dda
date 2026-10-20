@@ -1,0 +1,286 @@
+{
+ "session": "7a62e2e7-d3e7-4b1d-9a1f-5fae2a46abd6",
+ "startedAt": "2026-10-20T06:38:34.471Z",
+ "status": "completed",
+ "cycles": 332,
+ "durationMinutes": 30.027183333333333,
+ "intervalMedianMs": 5001,
+ "intervalP95Ms": 7531,
+ "gaps": 7,
+ "validQuoteShare": 0.9830572289156626,
+ "competitionKnown": 11550,
+ "candidates": 15702,
+ "observed5": 5382,
+ "observed15": 5616,
+ "labelsExpected": 15702,
+ "requestsPerCycle": 39.61144578313253,
+ "rateLimited": 95,
+ "timeouts": 0,
+ "requests": {
+  "solana-rpc getEpochInfo": {
+   "n": 332,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 294
+  },
+  "bsc-rpc eth_getBlockByNumber": {
+   "n": 2686,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 294
+  },
+  "solana-rpc getRecentPrioritizationFees": {
+   "n": 332,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 294
+  },
+  "solana-rpc getMultipleAccounts": {
+   "n": 2745,
+   "errors": 92,
+   "rateLimited": 92,
+   "timeouts": 0,
+   "medianMs": 414
+  },
+  "bsc-rpc eth_call": {
+   "n": 332,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 348
+  },
+  "bsc-rpc eth_gasPrice": {
+   "n": 331,
+   "errors": 1,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 291
+  },
+  "bsc-rpc eth_getLogs": {
+   "n": 968,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 307
+  },
+  "bsc-rpc eth_getTransactionByHash": {
+   "n": 1678,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 294
+  },
+  "solana-rpc getSignaturesForAddress": {
+   "n": 1177,
+   "errors": 1,
+   "rateLimited": 1,
+   "timeouts": 0,
+   "medianMs": 314
+  },
+  "solana-rpc getTransaction": {
+   "n": 1259,
+   "errors": 2,
+   "rateLimited": 2,
+   "timeouts": 0,
+   "medianMs": 351
+  },
+  "solana-rpc getBlockTime": {
+   "n": 1311,
+   "errors": 0,
+   "rateLimited": 0,
+   "timeouts": 0,
+   "medianMs": 294
+  }
+ },
+ "byPool": [
+  {
+   "pool": "0x92b7807bF19b7DDdf89b706143896d05228f3121",
+   "chain": "bsc",
+   "market": "USDC/USDT",
+   "expectedQuotes": 996,
+   "quotes": 990,
+   "valid": 975,
+   "validShare": 0.9789156626506024,
+   "medianQuoteMs": 737,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 602,
+   "completeWindows": 601,
+   "coveredSeconds": 1795,
+   "ingestLagMedianMs": 2176,
+   "complete30sWindowShare": 0.9849397590361446,
+   "tradeRecords": 140,
+   "reasons": {
+    "报价:无效": 15,
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 2
+   }
+  },
+  {
+   "pool": "0x4f31Fa980a675570939B737Ebdde0471a4Be40Eb",
+   "chain": "bsc",
+   "market": "USDC/USDT",
+   "expectedQuotes": 996,
+   "quotes": 990,
+   "valid": 975,
+   "validShare": 0.9789156626506024,
+   "medianQuoteMs": 737,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 602,
+   "completeWindows": 601,
+   "coveredSeconds": 1795,
+   "ingestLagMedianMs": 2176,
+   "complete30sWindowShare": 0.9849397590361446,
+   "tradeRecords": 72,
+   "reasons": {
+    "报价:无效": 15,
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 2
+   }
+  },
+  {
+   "pool": "0x172fcD41E0913e95784454622d1c3724f546f849",
+   "chain": "bsc",
+   "market": "WBNB/USDT",
+   "expectedQuotes": 996,
+   "quotes": 990,
+   "valid": 975,
+   "validShare": 0.9789156626506024,
+   "medianQuoteMs": 737,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 363,
+   "completeWindows": 362,
+   "coveredSeconds": 1122,
+   "ingestLagMedianMs": 328328,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 1430,
+   "reasons": {
+    "报价:无效": 15,
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 2
+   }
+  },
+  {
+   "pool": "0x36696169C63e42cd08ce11f5deeBbCeBae652050",
+   "chain": "bsc",
+   "market": "WBNB/USDT",
+   "expectedQuotes": 996,
+   "quotes": 990,
+   "valid": 975,
+   "validShare": 0.9789156626506024,
+   "medianQuoteMs": 737,
+   "slotSpanMedian": null,
+   "slotSpanP95": null,
+   "coverageWindows": 363,
+   "completeWindows": 362,
+   "coveredSeconds": 1122,
+   "ingestLagMedianMs": 328328,
+   "complete30sWindowShare": 0,
+   "tradeRecords": 60,
+   "reasons": {
+    "报价:无效": 15,
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:TypeError: fetch failed": 2
+   }
+  },
+  {
+   "pool": "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU",
+   "chain": "solana",
+   "market": "USDC/USDT",
+   "expectedQuotes": 996,
+   "quotes": 984,
+   "valid": 984,
+   "validShare": 0.9879518072289156,
+   "medianQuoteMs": 4264,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 2,
+   "coverageWindows": 329,
+   "completeWindows": 328,
+   "coveredSeconds": 2251.960999999999,
+   "ingestLagMedianMs": 2588,
+   "complete30sWindowShare": 0.9246987951807228,
+   "tradeRecords": 30,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:Error: 服务退避中": 3,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "3NeUgARDmFgnKtkJLqUcEUNCfknFCcGsFfMJCtx6bAgx",
+   "chain": "solana",
+   "market": "USDC/USDT",
+   "expectedQuotes": 996,
+   "quotes": 984,
+   "valid": 984,
+   "validShare": 0.9879518072289156,
+   "medianQuoteMs": 4270,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 2,
+   "coverageWindows": 328,
+   "completeWindows": 327,
+   "coveredSeconds": 5410.611999999999,
+   "ingestLagMedianMs": 2631,
+   "complete30sWindowShare": 0.927710843373494,
+   "tradeRecords": 6,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:Error: 服务退避中": 3,
+    "错误:Error: getMultipleAccounts: Rate limit exceeded. To obtain h": 1,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+   "chain": "solana",
+   "market": "SOL/USDC",
+   "expectedQuotes": 996,
+   "quotes": 984,
+   "valid": 984,
+   "validShare": 0.9879518072289156,
+   "medianQuoteMs": 4274,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 2,
+   "coverageWindows": 271,
+   "completeWindows": 255,
+   "coveredSeconds": 1403.995,
+   "ingestLagMedianMs": 9921,
+   "complete30sWindowShare": 0.28012048192771083,
+   "tradeRecords": 574,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "成交:签名分页未追平游标": 15,
+    "错误:Error: 服务退避中": 4,
+    "错误:TypeError: fetch failed": 1
+   }
+  },
+  {
+   "pool": "CYbD9RaToYMtWKA7QZyoLahnHdWq553Vm62Lh6qWtuxq",
+   "chain": "solana",
+   "market": "SOL/USDC",
+   "expectedQuotes": 996,
+   "quotes": 981,
+   "valid": 981,
+   "validShare": 0.9849397590361446,
+   "medianQuoteMs": 4277,
+   "slotSpanMedian": 1,
+   "slotSpanP95": 12,
+   "coverageWindows": 305,
+   "completeWindows": 304,
+   "coveredSeconds": 1868.7780000000007,
+   "ingestLagMedianMs": 3021,
+   "complete30sWindowShare": 0.7740963855421686,
+   "tradeRecords": 363,
+   "reasons": {
+    "成交:首次同步，窗口起点未知": 1,
+    "错误:Error: 服务退避中": 4,
+    "错误:TypeError: fetch failed": 1
+   }
+  }
+ ]
+}
