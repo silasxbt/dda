@@ -4,19 +4,20 @@ import {gzipSync} from 'node:zlib';
 import {dirname} from 'node:path';
 export const redact=(s:string)=>s.replace(/https?:\/\/[^\s"']+/g, x=>{try{return new URL(x).origin+'/[redacted-path]'}catch{return '[endpoint]'}});
 export class Net {
- raw:string; requests=0; failures=0; slots:number[]=[]; private pending=0; private background=new Map<string,number>(); private waiters:{run:()=>void;background:string|null}[]=[]; private next=new Map<string,number>(); private backoff=new Map<string,number>();
+ raw:string; requests=0; failures=0; slots:number[]=[]; private lanes=new Map<string,{pending:number;background:number;waiters:{run:()=>void;background:boolean}[]}>(); private next=new Map<string,number>(); private backoff=new Map<string,number>();
  private slotContext=new AsyncLocalStorage<number[]>(); private accountMemo=new WeakMap<number[],Map<string,Promise<any>>>(); private cycleMemo:Map<string,Promise<any>>|null=null;
  beginCycle(){this.cycleMemo=new Map();}
  traceSlots<T>(slots:number[],fn:()=>Promise<T>){this.accountMemo.set(slots,new Map());return this.slotContext.run(slots,fn);}
  constructor(raw:string){this.raw=raw;mkdirSync(dirname(raw),{recursive:true});}
  record(record:unknown){appendFileSync(this.raw,gzipSync(JSON.stringify(record)+'\n'));}
  async json(url:string,body?:unknown,priority:'quote'|'background'='quote'):Promise<any>{
-  // Two concurrent requests in total (DDA-005). Background trade ingestion may hold at most one per endpoint, and quotes are served first.
+  // At most two concurrent requests per endpoint (DDA-011). Background trade ingestion may hold one of them; quotes are served first.
   if(Array.isArray(body))throw new Error('不支持批量 JSON-RPC');
-  const source=new URL(url).origin,background=priority==='background'?source:null,busy=(b:string|null)=>b!==null&&(this.background.get(b)??0)>=1;
-  // The releasing request hands its slot (and background count) directly to the next waiter.
-  if(this.pending<2&&!busy(background)){this.pending++;if(background)this.background.set(background,(this.background.get(background)??0)+1);}
-  else await new Promise<void>(run=>this.waiters.push({run,background}));
+  const source=new URL(url).origin,background=priority==='background';
+  let lane=this.lanes.get(source);if(!lane)this.lanes.set(source,lane={pending:0,background:0,waiters:[]});
+  // The releasing request hands its slot (and background count) directly to the next waiter of the same endpoint.
+  if(lane.pending<2&&!(background&&lane.background>=1)){lane.pending++;if(background)lane.background++;}
+  else await new Promise<void>(run=>lane.waiters.push({run,background}));
   const method=(body as any)?.method??'GET';
   try{
    if(!['GET','eth_chainId','eth_blockNumber','eth_getBlockByNumber','eth_call','eth_gasPrice','eth_getLogs','eth_getTransactionByHash','eth_getCode','getAccountInfo','getMultipleAccounts','getSlot','getEpochInfo','getBlockTime','getRecentPrioritizationFees','getSignaturesForAddress','getTransaction','getVersion'].includes(method))throw new Error('只读 RPC 白名单拒绝 '+method);
@@ -35,9 +36,9 @@ export class Net {
     return body?data.result:data;
    }throw new Error('请求限流');
   }finally{
-   if(background)this.background.set(background,this.background.get(background)!-1);
-   const i=this.waiters.findIndex(w=>w.background===null),j=i>=0?i:this.waiters.findIndex(w=>!busy(w.background));
-   if(j>=0){const w=this.waiters.splice(j,1)[0];if(w.background)this.background.set(w.background,(this.background.get(w.background)??0)+1);w.run();}else this.pending--;
+   if(background)lane.background--;
+   const i=lane.waiters.findIndex(w=>!w.background),j=i>=0?i:lane.background<1?lane.waiters.findIndex(w=>w.background):-1;
+   if(j>=0){const w=lane.waiters.splice(j,1)[0];if(w.background)lane.background++;w.run();}else lane.pending--;
   }
  }
 /** Test replays return results through the same slot tracing as real responses. */

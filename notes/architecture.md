@@ -4,7 +4,7 @@
 
 ## 数据流与所有权
 
-`Collector` 拥有一次手动会话、停止标志和 RPC 适配器。`Net` 是唯一外网读取入口：全局最多两个请求（DDA-005），其中后台成交读取每个端点最多占一个、报价请求优先获得空位；同源请求间隔至少 180ms，8 秒超时，429 最多重试一次并遵守 Retry-After；退避长于 30 秒时本轮失败，不绕过限流；拒绝批量 JSON-RPC。失败不会合成报价。SDK 内部请求也经过该入口。同一周期完全相同的 epoch、优先费等只读请求共享响应，下一周期清空；每个池通过异步上下文记录实际依赖的 slot。报价周期与成交摄取分离：报价循环每周期 BSC 一次 Multicall、Solana 逐池快照；成交由后台循环持续读取（BSC 每个市场一个游标，Solana 逐池轮换），结果暂存，随下一次保存的周期写入。
+`Collector` 拥有一次手动会话、停止标志和 RPC 适配器。`Net` 是唯一外网读取入口：每个端点最多两个并发请求（DDA-011，原为全局合计两个），其中后台成交读取最多占一个、报价请求优先获得空位；同源请求间隔至少 180ms，8 秒超时，429 最多重试一次并遵守 Retry-After；退避长于 30 秒时本轮失败，不绕过限流；拒绝批量 JSON-RPC。失败不会合成报价。SDK 内部请求也经过该入口。同一周期完全相同的 epoch、优先费等只读请求共享响应，下一周期清空；每个池通过异步上下文记录实际依赖的 slot。报价周期与成交摄取分离：报价循环每周期 BSC 一次 Multicall、Solana 逐池快照；成交由后台循环持续读取（BSC 每个市场一个游标，Solana 逐池轮换），结果暂存，随下一次保存的周期写入。
 
 BSC 从 Factory 查池、核验精度；每周期把全部池的 slot0、Quoter exact-output 买入与 exact-input 卖出放进同一个 Multicall3 调用，钉在同一 block，slot0 转为基础币计价。Solana 使用锁定 Raydium SDK 的官方函数（getRpcClmmPoolInfos / getComputeClmmPoolInfos / computeAmountIn/Out）：每个池先把上一轮 SDK 实际读过的账户（池、配置、bitmap、tick arrays）按每批 ≤10 个并发读取成一个快照，SDK 再从该快照计算；价格移入新 tick array 时缺失账户当场补读并计入跨度。公共节点实测单次最多 10 个账户、不支持批量 JSON-RPC。经典 SPL mint 只在会话首次读取（报价只用其不可变精度与程序），不计入 slot 跨度；Token-2022 mint 每轮重读。epoch、优先费与各池快照并行，区块时间在全部快照后按 slot 读取。超过 16 slots、区块落后 10 秒或报价偏差 2 秒的组合不能成为基线机会。Solana 非原子状态跨度只能约束误差，不能证明可成交。
 

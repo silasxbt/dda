@@ -90,3 +90,8 @@ test('带可用时刻的覆盖在同一周期内即可使用；旧记录仍须�
  assert.equal(research(s,[cycle(0,{coverage:cov(t-500)})]).candidates[0].features.available,true);
  assert.equal(research(s,[cycle(0,{coverage:cov(t+500)})]).candidates[0].features.available,false);
  assert.equal(research(s,[cycle(0,{coverage:cov()})]).candidates[0].features.available,false);});
+test('并发上限按端点计算：每个端点最多 2 个，不同端点互不占用',async()=>{const dir=mkdtempSync(join(tmpdir(),'dda-lane-')),n=new Net(join(dir,'raw.gz')),original=globalThis.fetch;const live=new Map<string,number>(),peak=new Map<string,number>();let total=0,maxTotal=0;
+ globalThis.fetch=(async(u:any)=>{const h=new URL(String(u)).host;live.set(h,(live.get(h)??0)+1);total++;peak.set(h,Math.max(peak.get(h)??0,live.get(h)!));maxTotal=Math.max(maxTotal,total);await new Promise(r=>setTimeout(r,400));live.set(h,live.get(h)!-1);total--;return new Response('{"result":1}');}) as typeof fetch;
+ try{await Promise.all([...Array.from({length:4},(_,i)=>n.rpc('https://a.invalid','getBlockTime',[i])),...Array.from({length:4},(_,i)=>n.rpc('https://b.invalid','getBlockTime',[i]))]);
+  assert.equal(peak.get('a.invalid'),2);assert.equal(peak.get('b.invalid'),2);assert.equal(maxTotal,4);}
+ finally{globalThis.fetch=original;rmSync(dir,{recursive:true,force:true});}});
